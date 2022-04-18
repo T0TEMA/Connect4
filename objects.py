@@ -1,19 +1,30 @@
+"""
+Author : Totema (T0TEMA on GitHub)
+Version : Python 3.9
+
+File containing the game objects (Like the game grid).
+"""
+
+
 class Grid:
     def __init__(self):
         self.grid = [[0 for i in range(7)] for j in range(6)]
         self.round = 0
         self.winner = None
 
-    def show(self):
+    def show(self, showing):
         """
-        Method that chows the grid.
+        Method that chows the grid if showing parameter is 'True'.
         """
-        print()
-        for i in range(6):  # y coordinate
-            for j in range(7):  # x coordinate
-                print(self.grid[i][j], end=' ')
+        if showing:
             print()
-        print("_ _ _ _ _ _ _\n1 2 3 4 5 6 7")
+            for i in range(6):  # y coordinate
+                for j in range(7):  # x coordinate
+                    print(self.grid[i][j], end=' ')
+                print()
+            print("_ _ _ _ _ _ _\n1 2 3 4 5 6 7")
+        else:
+            return
 
     def play_move(self, col, player):
         """

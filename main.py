@@ -38,26 +38,25 @@ def game_options():
     return player1, player2
 
 
-def main(player1, player2):
+def main(player1, player2, display=True):
     """
     Main function, game loop.
     Returns the winner if it's not a draw.
     """
     # Instancing the grid.
     grid = Grid()
-    grid.show()
+    grid.show(display)
     current = 2  # Players round
     last = None  # Last played move
 
     while grid.endgame(current, last) is not True:
         current = 3 - current
-        print(f"\nRound player {current}")
         if current == 1:
             col = int(player1.play(grid.grid, current))
         else:
             col = int(player2.play(grid.grid, current))
         last = grid.play_move(col, current)  # Modifies the grid
-        grid.show()
+        grid.show(display)
     if grid.winner is not None:
         return current
 

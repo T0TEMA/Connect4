@@ -17,10 +17,9 @@ Version : Python 3.9
 <h2>Available features :</h2>
 * Play a game (PvP, PvAI or AIvAI)
   * Displays in the terminal. 
+* Possibility to launch a "multiple game" simulation from `loop.py` file.
 ***
 <h2>Futur features :</h2>
-* Template python file to launch multiple games (with a loop), and gather in a text file the game statistics
-  (amount of wins) of a given AI.
 * Template python file for a custom AI.
 * Minimax (AI) type player.
   * Other type of AIs ...
