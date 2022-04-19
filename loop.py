@@ -13,6 +13,7 @@ player2 = RandomAI()  # Set player 2 type.
 N = 10000  # Amount of simulations.
 p1_wins = 0
 p2_wins = 0
+draw = 0
 
 tI = time()  # Time at beginning of simulation.
 for _ in range(N):
@@ -21,8 +22,11 @@ for _ in range(N):
         p1_wins += 1
     elif winner == 2:
         p2_wins += 1
+    else:
+        draw += 1
 tF = time()  # Time at end of simulation.
 
 print(f"Simulation time {tF - tI} s\n"  # Calculating simulation time.
       f"{player1} (P1) : {p1_wins} wins\n"
-      f"{player2} (P2) : {p2_wins} wins")
+      f"{player2} (P2) : {p2_wins} wins\n"
+      f"Draws : {draw}")

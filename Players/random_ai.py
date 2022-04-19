@@ -5,7 +5,7 @@ Version : Python 3.9
 File containing the script of a random AI, type player.
 """
 
-from random import randint
+from random import choice
 
 
 class RandomAI:
@@ -13,5 +13,5 @@ class RandomAI:
         return "Random Ai"
 
     @staticmethod
-    def play(grid, player):
-        return randint(0, 6)
+    def play(grid, color, last, possible):
+        return choice(possible)

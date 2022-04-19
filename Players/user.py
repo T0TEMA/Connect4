@@ -11,14 +11,13 @@ class User:
         return "User"
 
     @staticmethod
-    def play(grid, player):
+    def play(grid, color, last, possible):
         move = -1
-        while move > 7 or move < 1:
+        while move not in possible:
             try:
-                move = int(input(f"Round player {player}\n"
-                                 f"In which row do you want to play ?"))
-                break
+                move = int(input(f"Round player {color}\n"
+                                 f"In which row do you want to play ?")) - 1
             except ValueError:
                 pass
-        return move-1
+        return move
 

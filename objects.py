@@ -51,7 +51,9 @@ class Grid:
         Method that checks if the game is finished, returns 'True'. Otherwise, 'False'.
         Changes the winner attribute into 'True' if there is a winner.
         """
-        if last_pos is not None:
+        if not self.possible_moves():
+            return []
+        elif last_pos is not None:
             POSSIBLE_DIRECTION = [(0, -1), (1, -1), (1, 0), (1, 1), (0, 1)]
             for direction in POSSIBLE_DIRECTION:
                 if self.rec_check(direction,  last_pos, player, 1):
@@ -81,3 +83,10 @@ class Grid:
                 return self.rec_check(direction, (i+a, j+b), player, n+1)
         except IndexError:
             return False
+
+    def possible_moves(self):
+        possible_moves = []
+        for i in range(7):
+            if self.grid[0][i] == 0:
+                possible_moves.append(i)
+        return possible_moves
