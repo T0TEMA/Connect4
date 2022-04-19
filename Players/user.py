@@ -20,5 +20,5 @@ class User:
                 break
             except ValueError:
                 pass
-        return move
+        return move-1
 

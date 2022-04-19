@@ -70,6 +70,8 @@ class Grid:
         j, b = last_pos[1], direction[1]
 
         try:
+            if 0 > j+b:  # Correcting issue #1 (github)
+                raise IndexError
             if n == 4:
                 self.winner = True
                 return True
