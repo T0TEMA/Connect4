@@ -4,6 +4,7 @@ Version : Python 3.9
 
 File containing the game objects (Like the game grid).
 """
+from constant import RED_COLOR, YELLOW_COLOR, DEFAULT_COLOR
 
 
 class Grid:
@@ -20,15 +21,20 @@ class Grid:
             print()
             for i in range(6):  # y coordinate
                 for j in range(7):  # x coordinate
-                    print(self.grid[i][j], end=' ')
-                print()
+                    if self.grid[i][j] == 1:
+                        print(end=f'{RED_COLOR}1 ')  # Displays a yellow '1' in the grid.
+                    elif self.grid[i][j] == 2:
+                        print(end=f'{YELLOW_COLOR}2 ')  # Displays a red '2' in the grid.
+                    else:
+                        print(end=f'{DEFAULT_COLOR}. ')  # Displays a dot in the game grid.
+                print('\033[0m')
             print("_ _ _ _ _ _ _\n1 2 3 4 5 6 7")
         else:
             return
 
     def play_move(self, col, player):
         """
-        Method that plays move from a given column.
+        Method that plays move from a given column. It changes the grid attribute of Grid class.
         Returns the position where the piece stopped in the grid.
         """
         i = 0
@@ -51,15 +57,20 @@ class Grid:
         Method that checks if the game is finished, returns 'True'. Otherwise, 'False'.
         Changes the winner attribute into 'True' if there is a winner.
         """
-        if not self.possible_moves():
-            return []
+        if not self.possible_moves():  # Checks if you can play in the grid, otherwise the game is finished.
+            return True
         elif last_pos is not None:
-            POSSIBLE_DIRECTION = [(0, -1), (1, -1), (1, 0), (1, 1), (0, 1)]
-            for direction in POSSIBLE_DIRECTION:
-                if self.rec_check(direction,  last_pos, player, 1):
+            POSSIBLE_DIRECTION = (((-1, -1), (1, 1)), ((-1, 1), (1, -1)), ((0, -1), (0, 1)), ((1, 0)))
+            for i in range(4):
+                if i < 3:
+                    concatenation = self.rec_check(POSSIBLE_DIRECTION[i][0],  last_pos, player, 1) + self.rec_check(POSSIBLE_DIRECTION[i][1], last_pos, player, 1) -1
+                else:
+                    concatenation = self.rec_check(POSSIBLE_DIRECTION[i],  last_pos, player, 1)
+                if concatenation >= 4:
+                    self.winner = True
                     return True
             return False
-        else:
+        elif last_pos is None:
             return False
 
     def rec_check(self, direction, last_pos, player, n):
@@ -72,17 +83,14 @@ class Grid:
         j, b = last_pos[1], direction[1]
 
         try:
-            if 0 > j+b:  # Correcting issue #1 (github)
+            if j+b < -1:  # Correcting issue #1 (github)
                 raise IndexError
-            if n == 4:
-                self.winner = True
-                return True
-            elif self.grid[i+a][j+b] != player:
-                return False
+            elif self.grid[i+a][j+b] != player or n == 4:
+                return n
             elif self.grid[i+a][j+b] == player:
                 return self.rec_check(direction, (i+a, j+b), player, n+1)
         except IndexError:
-            return False
+            return n
 
     def possible_moves(self):
         possible_moves = []

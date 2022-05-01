@@ -7,10 +7,12 @@ File that permits a multiple game launch (simulation).
 from time import time
 from main import main
 from Players.random_ai import RandomAI
+from Players.minimax_ai import MinimaxAI
 
-player1 = RandomAI()  # Set player 1 type.
+player1 = MinimaxAI(1)  # Set player 1 type.
 player2 = RandomAI()  # Set player 2 type.
-N = 10000  # Amount of simulations.
+N = int(input("Amount of games simulated.")) # Amount of simulations.
+
 p1_wins = 0
 p2_wins = 0
 draw = 0
@@ -26,7 +28,9 @@ for _ in range(N):
         draw += 1
 tF = time()  # Time at end of simulation.
 
-print(f"Simulation time {tF - tI} s\n"  # Calculating simulation time.
-      f"{player1} (P1) : {p1_wins} wins\n"
-      f"{player2} (P2) : {p2_wins} wins\n"
-      f"Draws : {draw}")
+print(f"Simulation time : {tF - tI} s\n"  # Calculating simulation time.
+      f"{player1} (P1) : {p1_wins} ({p1_wins/(N/100)} %) wins \n"
+      f"{player2} (P2) : {p2_wins} ({p2_wins/(N/100)} %) wins \n"
+      f"Draws          : {draw}  ({draw/(N/100)} %) draws")
+
+input("\nClose program")

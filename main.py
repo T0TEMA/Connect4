@@ -4,11 +4,11 @@ Version : Python 3.9
 
 Root file of the "Connect 4" project.
 """
-
 from objects import Grid
 from Players.user import User
 from Players.random_ai import RandomAI
 from Players.minimax_ai import MinimaxAI
+from constant import COLORS
 
 
 def game_options():
@@ -48,8 +48,7 @@ def main(player1, player2, display=True):
     Main function, game loop.
     Returns the winner if it's not a draw.
     """
-    # Instancing the grid.
-    grid = Grid()
+    grid = Grid()  # Instancing the grid.
     grid.show(display)
     current = 2  # Players round
     last = None  # Last played move
@@ -74,6 +73,6 @@ if __name__ == '__main__':
     P1, P2 = game_options()
     winner = main(P1, P2)
     if winner is not None:
-        print(f"Player {winner} has won !")
+        print(f"Player {winner} ({COLORS[winner]}) has won !")
     else:
         print(f"Draw ... No winners.")
