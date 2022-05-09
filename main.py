@@ -8,6 +8,7 @@ from objects import Grid
 from Players.user import User
 from Players.random_ai import RandomAI
 from Players.minimax_ai import MinimaxAI
+from Players.other_minimax import Minimax
 from constant import COLORS
 
 
@@ -18,7 +19,7 @@ def game_options():
     """
     print(f"Choose the players :\n0 : user\n1 : ai random\n2 : ai minimax\n")
     player1, player2 = -1, -1
-    while player1 < 0 or player1 > 2 or player2 < 0 or player2 > 2:
+    while player1 < 0 or player1 > 3 or player2 < 0 or player2 > 3:
         try:
             player1 = int(input('Player 1 : '))  # Yellow player
             player2 = int(input('Player 2 : '))  # Red player
@@ -32,6 +33,8 @@ def game_options():
         player1 = RandomAI()
     elif player1 == 2:
         player1 = MinimaxAI()
+    elif player1 == 3:
+        player1 = Minimax
     # Player 2
     if player2 == 0:
         player2 = User()
@@ -39,6 +42,8 @@ def game_options():
         player2 = RandomAI()
     elif player2 == 2:
         player2 = MinimaxAI()
+    elif player2 == 3:
+        player2 = Minimax()
 
     return player1, player2
 
