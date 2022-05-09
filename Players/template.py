@@ -11,7 +11,7 @@ class Template:
         return "Template AI"
 
     @staticmethod
-    def play(grid, player):
+    def play(self, grid, current, last, possible):
         """
         Method that returns a move (value between 1 and 7 included), corresponding to one of
         the columns of the grid.
