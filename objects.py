@@ -4,7 +4,7 @@ Version : Python 3.9
 
 File containing the game objects (Like the game grid).
 """
-from constant import RED_COLOR, YELLOW_COLOR, DEFAULT_COLOR
+from constant import COLORS
 
 
 class Grid:
@@ -22,11 +22,11 @@ class Grid:
             for i in range(6):  # y coordinate
                 for j in range(7):  # x coordinate
                     if self.grid[i][j] == 1:
-                        print(end=f'{RED_COLOR}1 ')  # Displays a yellow '1' in the grid.
+                        print(end=f'{COLORS["red"]}1 ')  # Displays a yellow '1' in the grid.
                     elif self.grid[i][j] == 2:
-                        print(end=f'{YELLOW_COLOR}2 ')  # Displays a red '2' in the grid.
+                        print(end=f'{COLORS["yellow"]}2 ')  # Displays a red '2' in the grid.
                     else:
-                        print(end=f'{DEFAULT_COLOR}. ')  # Displays a dot in the game grid.
+                        print(end=f'{COLORS[""]}. ')  # Displays a dot in the game grid.
                 print('\033[0m')
             print("_ _ _ _ _ _ _\n1 2 3 4 5 6 7")
         else:

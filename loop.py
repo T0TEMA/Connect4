@@ -1,6 +1,6 @@
 """
 Author : Totema (T0TEMA on GitHub)
-Version : Python 3.9
+Version : Python 3.10
 
 File that permits a multiple game launch (simulation).
 """
@@ -9,7 +9,7 @@ from main import main
 from Players.random_ai import RandomAI
 from Players.minimax_ai import MinimaxAI
 
-player1 = MinimaxAI(1)  # Set player 1 type.
+player1 = MinimaxAI()  # Set player 1 type.
 player2 = RandomAI()  # Set player 2 type.
 N = int(input("Amount of games simulated.")) # Amount of simulations.
 

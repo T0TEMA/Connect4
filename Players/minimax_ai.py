@@ -35,7 +35,7 @@ class MinimaxAI:
                 best_move = [move]
             elif score == best_score:
                 best_move.append(move)
-            print(move+1, score)
+            #print(move+1, score)
         return choice(best_move)
 
     def minimax(self, depth, current, last_pos):

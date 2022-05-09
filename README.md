@@ -1,7 +1,7 @@
 <u><h1> Connect 4 :</h1></u>
 Author : Totema (T0TEMA on GitHub)  
 Date : 18th February 2022  
-Version : Python 3.9
+Version : Python 3.10
 
 ***
 
